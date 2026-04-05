@@ -15,10 +15,8 @@ let db;
 async function connectDB() {
   try {
     await client.connect();
-
-    console.log("Connected to MongoDB");
-
     db = client.db(process.env.DB_NAME);
+    console.log("Connected to MongoDB");
 
   } catch (error) {
     console.error(error);
