@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { getDB } = require("../config/db.js");
 
+console.log("Products routes load thành công !");
+
 router.get("/", async (req, res) => {
+  console.log("Người dùng fetch đến router")
   try {
     const db = getDB();
 
@@ -60,8 +63,6 @@ router.get("/", async (req, res) => {
       default:
         sortOption = { createdAt: -1 };
     }
-
-    console.log(filter.categoryId);
 
     // ===== PAGINATION =====
     const skip = (page - 1) * limit;
