@@ -92,8 +92,6 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// @route   DELETE /api/wishlist/:productId
-// @desc    Xóa sản phẩm khỏi wishlist
 router.delete("/:productId", authMiddleware, async (req, res) => {
   try {
     const db = getDB();

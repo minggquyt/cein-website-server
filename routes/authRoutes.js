@@ -29,13 +29,13 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
 
-    console.log(req.body);
-
     const db = getDB();
     
     const { email, password } = req.body;
 
     const user = await db.collection("users").findOne({ email });
+
+    console.log(user);
 
     if (!user) {
         return res.status(401).json({ message: "User not found" });
@@ -48,14 +48,18 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign(
-        { userId: user._id, role: user.role },
+        { userId: user._id, role: user.role }, 
         "SECRET_KEY",
         { expiresIn: "7d" }
     );
 
 
-
-    res.json({ usertoken: token, username: user.name, useravatarurl: user.avatar_url });
+    res.json({ 
+        usertoken: token, 
+        username: user.name, 
+        useravatarurl: user.avatar_url,
+        userrole: user.role
+    });
 })
 
 module.exports = router;
