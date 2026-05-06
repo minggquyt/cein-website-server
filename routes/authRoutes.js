@@ -35,8 +35,6 @@ router.post("/login", async (req, res) => {
 
     const user = await db.collection("users").findOne({ email });
 
-    console.log(user);
-
     if (!user) {
         return res.status(401).json({ message: "User not found" });
     }
